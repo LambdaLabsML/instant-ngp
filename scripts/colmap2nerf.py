@@ -271,7 +271,7 @@ if __name__ == "__main__":
 
 					up += c2w[0:3,1]
 
-				frame={"file_path":name,"sharpness":b,"transform_matrix": c2w}
+				frame={"file_path":"images/" + os.path.basename(name),"sharpness":b,"transform_matrix": c2w}
 				out["frames"].append(frame)
 	nframes = len(out["frames"])
 

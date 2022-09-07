@@ -13,3 +13,9 @@
 __pycache__
 .DS_Store
 imgui.ini
+data/nerf/lambda/*/*/*.jpg
+data/nerf/lambda/*/*.json
+data/nerf/lambda/*/*.mp4
+data/nerf/lambda/*/*.MOV
+colmap*
+.venv*

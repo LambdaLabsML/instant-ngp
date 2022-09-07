@@ -65,6 +65,14 @@ def parse_args():
 
 	parser.add_argument("--sharpen", default=0, help="Set amount of sharpening applied to NeRF training images. Range 0.0 to 1.0.")
 
+	parser.add_argument("--min_x", type=float, default=-7.5, help="min_x for aabb cropping.")
+	parser.add_argument("--min_y", type=float, default=-7.5, help="min_y for aabb cropping.")
+	parser.add_argument("--min_z", type=float, default=-7.5, help="min_z for aabb cropping.")
+	parser.add_argument("--max_x", type=float, default=8.5, help="max_x for aabb cropping.")
+	parser.add_argument("--max_y", type=float, default=8.5, help="max_y for aabb cropping.")
+	parser.add_argument("--max_z", type=float, default=8.5, help="max_z for aabb cropping.")
+
+	
 
 	return parser.parse_args()
 
@@ -103,6 +111,7 @@ if __name__ == "__main__":
 		network = os.path.join(configs_dir, network)
 
 	testbed = ngp.Testbed(mode)
+
 	testbed.nerf.sharpen = float(args.sharpen)
 	testbed.exposure = args.exposure
 	if mode == ngp.TestbedMode.Sdf:
@@ -183,6 +192,10 @@ if __name__ == "__main__":
 	# compute PSNR, or render a video.
 	if n_steps < 0 and (not args.load_snapshot or args.gui):
 		n_steps = 35000
+
+	# AABB crop settings
+	# https://github.com/NVlabs/instant-ngp/discussions/335
+	testbed.render_aabb = ngp.BoundingBox([args.min_x, args.min_y, args.min_z], [args.max_x, args.max_y, args.max_z])
 
 	tqdm_last_update = 0
 	if n_steps > 0:
