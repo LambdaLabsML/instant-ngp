@@ -153,7 +153,7 @@ $ wget https://lambdalabs-files.s3.us-west-2.amazonaws.com/mlteam/nerf/data/lego
 $ mv IMG_0592.MOV data/nerf/lambda/lego
 $ python scripts/colmap2nerf.py \
   --video_in data/nerf/lambda/lego/IMG_0592.MOV \
-  --out data/nerf/lambda/lego/transforms.json
+  --out data/nerf/lambda/lego/transforms.json \
   --video_fps 2 --run_colmap --aabb_scale 16
 ```
 
